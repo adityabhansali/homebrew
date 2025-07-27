@@ -38,8 +38,23 @@ Returns: a suitable coffee recipe for a "happy" mood.
 
 (You will be called again with the following:)
 
-**Action_Response**: For the 'lonely' mood, you should drink a Coffechino.
+**Action_Response**: For the 'lonely' mood, you should drink a Mocha with extra chocolate.
 
-**Answer**: Since you're feeling lonely, I recommend trying a comforting Coffechino.
+**Answer**: Since you're feeling sad, I recommend a comforting Mocha with extra chocolate.
 
+**Recepie**:
+**Ingredients**:
+*   1 shot (1 oz) espresso
+*   8 oz milk
+*   2 tbsp chocolate syrup or melted chocolate
+*   Whipped cream (optional)
+*   Chocolate shavings or cocoa powder for garnish (optional)
+
+**Instructions**:
+1.  **Brew Espresso**: Prepare one shot of espresso.
+2.  **Heat Milk**: Heat and steam the milk until it's hot and frothy.
+3.  **Combine Chocolate and Espresso**: Pour the chocolate syrup into your mug. Add the hot espresso and stir until well combined.
+4.  **Add Milk**: Pour the steamed milk into the mug, stirring gently as you pour.
+5.  **Garnish (Optional)**: Top with whipped cream and chocolate shavings or a sprinkle of cocoa powder for an extra treat.
+6.  **Enjoy**: Sip and feel a little brighter!
 """

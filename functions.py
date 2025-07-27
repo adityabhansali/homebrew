@@ -36,7 +36,6 @@ def save_unknown_mood(mood: str, file_path="moods.json"):
 
 def get_coffee_recepies(mood: str) -> str:
     mood = mood.lower()
-
     match mood:
         case "happy":
             return "Iced Caramel Latte"
@@ -50,9 +49,38 @@ def get_coffee_recepies(mood: str) -> str:
             return "Coffechino"
         case "angry":
             return "Flat White with oat milk"
+        case "anxious":
+            return "Decaf Chamomile Latte"
+        case "stressed":
+            return "Vanilla Lavender Latte"
+        case "relaxed":
+            return "Hazelnut Flat White"
+        case "bored":
+            return "Affogato (espresso over ice cream)"
+        case "confident":
+            return "Macchiato"
+        case "romantic":
+            return "Rose Latte"
+        case "nostalgic":
+            return "Turkish Coffee"
+        case "playful":
+            return "Peppermint Mocha"
+        case "focused":
+            return "Americano"
+        case "creative":
+            return "Spanish Latte"
+        case "lazy":
+            return "Iced Coffee with cream"
+        case "determined":
+            return "Doppio (double espresso)"
+        case "hopeful":
+            return "Cinnamon Cappuccino"
+        case "curious":
+            return "Nitro Cold Brew"
         case _:
             save_unknown_mood(mood)
-            return "Classic Cappuccino – always a good choice!"
+            return "Classic Cappuccino"
+
 
 def extract_json_from_text(text):
     try:
@@ -64,5 +92,25 @@ def extract_json_from_text(text):
     return {}
 
 def clean_answer_text(response_text):
-    return response_text.replace("**Answer**:", "").strip()
+    answer_match = re.search(r"\*\*Answer\*\*: (.+?)\n", response_text)
+    answer = answer_match.group(1).strip() if answer_match else ""
+
+    ingredients = re.findall(r"\*\*Ingredients\*\*:\n(.*?)\n\n", response_text, re.DOTALL)
+    ingredients_list = []
+    if ingredients:
+        ingredients_list = [line.strip('* ').strip() for line in ingredients[0].strip().split('\n') if line.strip()]
+
+    instructions = re.findall(r"\*\*Instructions\*\*:\n(.*?)$", response_text, re.DOTALL)
+    instructions_list = []
+    if instructions:
+        instructions_list = [re.sub(r"^\d+\.\s*", "", line).strip() for line in instructions[0].strip().split('\n') if line.strip()]
+
+    data = {
+        "answer": answer,
+        "recipe": {
+            "ingredients": ingredients_list,
+            "instructions": instructions_list
+        }
+    }
+    return json.dumps(data, indent=4)
     
